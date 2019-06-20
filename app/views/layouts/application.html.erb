@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="/vendor/bootstrap-4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/libs/global.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -27,8 +28,8 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <div id="navbarNavDropdown" class="navbar-collapse collapse">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
+              <ul class="tab_lista navbar-nav ">
+                  <li class="nav-item">
                       <a class="nav-link" href="/mesa/ver">MESAS</a>
                   </li>
                   <li class="nav-item">
@@ -41,14 +42,27 @@
                       <a class="nav-link" href="/mesa/reservacion">RESERVACION</a>
                   </li>
               </ul>
-              <ul class="navbar-nav">
+
+              <ul class="right-nav navbar-nav">
                   <li class="nav-item">
-                      <a class="nav-link" href="/login">Login</a>
+                      <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">CONECTADO
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="/log_off">DESCONECTAR</a></li>    
+                            </ul>
+
+                      </div>
                   </li>
 
               </ul>
+
           </div>
+
       </nav>
+
+
   </div>
     <% end %>
   <%= yield %>

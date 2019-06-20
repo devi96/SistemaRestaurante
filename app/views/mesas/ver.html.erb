@@ -36,7 +36,7 @@
           </table>
           <div>
           <div>
-            MONTO TOTAL A PAGAR: 160 SOLES
+            MONTO TOTAL A PAGAR: <span id="CostoTotal"></span> SOLES
           </div>
 
       </div>
@@ -47,7 +47,7 @@
         <div class="form-group" >
         <button class="btn btn-success" id="btn-save_A">GENERAR RECIBO</button>
         <div style="margin-top: 2em;">
-          <button  class="btn btn-primary" id="btn-save_A">LIMPIAR DISPONIBILIDAD MESA</button>
+          
           <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
         </div>
         </div>
@@ -70,6 +70,7 @@
       <img src="https://http2.mlstatic.com/mesa-madera-restaurante-bar-cafeteria-lounge-cocina-taqueria-D_NQ_NP_900557-MLM25536646054_042017-Q.jpg" alt="">
       <br>MESA <%= mesa.id %> <br>
        STATUS: <span class="<%= mesa.estado %>"> <%= mesa.estado %> </span> <br>
+      <button id="MESA_ESTADO<%= mesa.id %>" type="button" class="btn_estados btn btn-primary">STATUS</button>
       <button id="MESA_PAGO<%= mesa.id %>" type="button" class="btn_pagos btn btn-primary">PAGOS</button>
       <button class="btn_reservacion btn btn-success" id="btn-save_R<%= mesa.id %>">Reservacion</button>
     </div>
@@ -79,6 +80,32 @@
 
 
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-estado" aria-labelledby="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">ESTADO MESA</h5>
+        <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mt-4 mb-4 col-md-4">
+         <select class="select" data-live-search="true" id="tipo_estado_mesa" name="tipo_estado_mesa" style="width:10em">
+              <option value="LIBRE" selected>LIBRE</option>
+              <option value="OCUPADO">OCUPADO</option>
+         </select> 
+        </div>
+         
+
+        <div class="form-group">
+          <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
+          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

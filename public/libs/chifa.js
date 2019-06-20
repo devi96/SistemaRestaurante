@@ -48,14 +48,20 @@ function llenar_tabla_pedidos(mesa_id){
     data: JSON.stringify(_data),
     contentType: "application/json",
     success: function(response, status, xhr){
+      var costo_total = 0;
       if (status == "success"){
         console.log("Se devolvio exitosamente los pedidos");
         //fill_table();
         var $tr="";
+
+
         $(function() {
+
           $.each(response, function(i, item){
-            $tr += '<tr><td>' + item.id + '</td><td>' + item.platillo_id + '</td><td>' + item.cantidad  + '</td><td>' + item.estado + '</td><td>' + item.tiempo_espera + '</td> </tr>';
+            $tr += '<tr><td>' + item.id + '</td><td>' + item.platillo_id + '</td><td>' + item.cantidad  + '</td><td>' + item.estado + '</td><td>' + item.tiempo_espera + '</td><td>' + item.costo + '</td> </tr>';
+            costo_total = costo_total + parseFloat(item.costo);
           });
+          $("#CostoTotal").html(costo_total);
           $(".tabla_pedidos > tbody").html($tr);
         }); 
 
@@ -78,7 +84,18 @@ function llenar_tabla_pedidos(mesa_id){
 
 
 function modal_events(){
+  //evento para las listas
+$(".tab_lista").on('click','li', function() {
+        $('.tab_lista li.active').removeClass('active');
+        $(this).addClass('active');
+ });
+
+
   //botones de modal en modulo mesas
+  $(".btn_estados").click(function( evt) {
+    var _modal = $("#modal-estado");
+    _modal.modal("show");
+  });
 
   $(".btn_pagos").click(function (evt){
 
@@ -97,10 +114,15 @@ function modal_events(){
     _modal.modal("show");
   });
 
+
   $(".btn_reservacion").click(function (evt){
     var _modal = $("#modal-reservacion");
     _modal.modal("show");
+    
   });
+
+  //----------------end-----------------------
+
 
 
   $("#agregar_platillo").click(function (evt) {
