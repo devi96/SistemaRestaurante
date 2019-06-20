@@ -1,0 +1,36 @@
+.mesa{
+background-image: url('https://http2.mlstatic.com/mesa-madera-restaurante-bar-cafeteria-lounge-cocina-taqueria-D_NQ_NP_900557-MLM25536646054_042017-Q.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+width: 100%;
+font-family: 'Numans', sans-serif;
+}
+.panel > div{
+  margin: 10%;
+}
+.panel > div > div{
+  margin: 1em;
+}
+
+.mesas{
+  align-items: center;
+  margin: auto;
+  padding-left: 15%;
+}
+img{
+  display: block;
+ width: 40%;
+ height: auto;
+
+}
+
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+
+.modal-body{ 
+    overflow-y: auto;
+}

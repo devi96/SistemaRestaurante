@@ -1,0 +1,120 @@
+<% content_for :styles do %>
+<link rel="stylesheet" href="/vendor/bootstrap-select/bootstrap-select.min.css">
+<link rel="stylesheet" href="/vendor/select2/select2.min.css">
+<link rel="stylesheet" href="/vendor/datatable/datatables.min.css">
+<link rel="stylesheet" href="/libs/mesa.css">
+<% end %>
+
+<div class="modal fade" tabindex="-1"  role="dialog" id="modal-pagar" aria-labelledby="">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">PAGOS</h5>
+        <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      <div class="container-fluid">
+          <h2>PEDIDOS</h2>
+          <p>todos los pedidos de la mesa</p>
+          <table class="table tabla_pedidos">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>PLATILLO</th>
+                <th>CANTIDAD</th>
+                <th>ESTADO</th>
+                <th>TIEMPO_ESPERA</th>
+                <th>COSTO</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            </tbody>
+          </table>
+          <div>
+          <div>
+            MONTO TOTAL A PAGAR: 160 SOLES
+          </div>
+
+      </div>
+      </div>
+
+      <div class="">
+
+        <div class="form-group" >
+        <button class="btn btn-success" id="btn-save_A">GENERAR RECIBO</button>
+        <div style="margin-top: 2em;">
+          <button  class="btn btn-primary" id="btn-save_A">LIMPIAR DISPONIBILIDAD MESA</button>
+          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+      </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+<div class="mesas panel col-lg-12">
+  
+  <div class="row col-md-9">
+    <% @mesas.each do |mesa| %>
+    <div class="col-md-3">
+      <img src="https://http2.mlstatic.com/mesa-madera-restaurante-bar-cafeteria-lounge-cocina-taqueria-D_NQ_NP_900557-MLM25536646054_042017-Q.jpg" alt="">
+      <br>MESA <%= mesa.id %> <br>
+       STATUS: <span class="<%= mesa.estado %>"> <%= mesa.estado %> </span> <br>
+      <button id="MESA_PAGO<%= mesa.id %>" type="button" class="btn_pagos btn btn-primary">PAGOS</button>
+      <button class="btn_reservacion btn btn-success" id="btn-save_R<%= mesa.id %>">Reservacion</button>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-reservacion" aria-labelledby="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">RESERVACION</h5>
+        <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label class="col-form-label">DNI</label>
+          <div>
+            <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label">NOMBRE Y APELLIDOS</label>
+          <div>
+            <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <button class="btn btn-primary" id="btn-save_A">LIMPIAR MESA</button>
+          <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
+          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

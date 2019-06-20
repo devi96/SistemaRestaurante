@@ -1,0 +1,165 @@
+<div class="container">
+  <h2>REGISTROS DE VENTA</h2>
+  <p>VENTAS del sistema</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>MESA</th>
+        <th>codigo_venta</th>
+        <th>ruc</th>
+        <th>Monto</th>
+        <th>Moneda</th>
+        <th>estado</th>
+        <th>forma_pago</th>
+        <th>comprobante_pago</th>
+        <th>OPCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>#23124314</td>
+        <td>20102445</td>
+        <td>133</td>
+        <td>SOLES</td>
+        <td>NO COBRADO</td>
+        <td>TARJETA</td>
+        <td>FACTURA</td>
+        <td><button id="REGISTRO_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>#23124314</td>
+        <td>20102445</td>
+        <td>133</td>
+        <td>SOLES</td>
+        <td>NO COBRADO</td>
+        <td>TARJETA</td>
+        <td>FACTURA</td>
+        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>#23124314</td>
+        <td>20102445</td>
+        <td>133</td>
+        <td>SOLES</td>
+        <td>NO COBRADO</td>
+        <td>TARJETA</td>
+        <td>FACTURA</td>
+        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>#23124314</td>
+        <td>20102445</td>
+        <td>133</td>
+        <td>SOLES</td>
+        <td>NO COBRADO</td>
+        <td>TARJETA</td>
+        <td>FACTURA</td>
+        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>#23124314</td>
+        <td>20102445</td>
+        <td>133</td>
+        <td>SOLES</td>
+        <td>NO COBRADO</td>
+        <td>TARJETA</td>
+        <td>FACTURA</td>
+        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>#23124314</td>
+        <td>20102445</td>
+        <td>133</td>
+        <td>SOLES</td>
+        <td>NO COBRADO</td>
+        <td>TARJETA</td>
+        <td>FACTURA</td>
+        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-pagar_pagos" aria-labelledby="">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">REGISTRAR PAGO</h5>
+        <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label class="col-form-label">ESTADO:</label>
+          <div>
+            <select class="select" data-live-search="true" id="tipo_agregar" name="tipo_agregar" style="width:10em">
+              <option value="ARROZ CHAUFA" selected>NO COBRADO</option>
+              <option value="MONSTRUO">PREPARANDO</option>
+              <option value="ARROZ CON VERDURAS">ARROZ CON VERDURAS</option>
+            </select>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+          <label>forma_pago: </label>
+          <div>
+            <select class="select" data-live-search="true" id="placas_agregar" name="placas_agregar" style="width:10em">
+                <option value="1" selected>TARJETA</option>
+                <option value="1">1</option>
+                <option value="1">1</option>
+            </select>
+          </div>
+
+        </div>
+
+
+                <div class="form-group">
+                  <label>MONEDA </label>
+                  <div>
+                    <select class="select" data-live-search="true" id="placas_agregar" name="placas_agregar" style="width:10em">
+                        <option value="1" selected>SOLES</option>
+                        <option value="1">1</option>
+                        <option value="1">1</option>
+                    </select>
+                  </div>
+
+                </div>
+
+        <div class="form-group">
+          <label class="col-form-label">MONTO</label>
+          <div>
+            <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
+          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

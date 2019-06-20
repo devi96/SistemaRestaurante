@@ -1,0 +1,4 @@
+class EmpleadoController < ApplicationController
+
+
+end
