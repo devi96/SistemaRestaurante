@@ -12,6 +12,21 @@ class PedidosController < ApplicationController
     
   end
   
+  def getPlatillos
+    @platillos = Platillo.all
+    render json: @platillos, status: :ok
+  end
+
+
+  def buscar
+    puts "Se esta buscando el pedido"
+    mesa_id = params[:IDmesa]
+    @pedidos = Pedido.getBuscarActivos(mesa_id)
+
+    render json: @pedidos, status: :ok
+
+  end
+  
   def create
 
    	mesa_id = params[:IDmesa]

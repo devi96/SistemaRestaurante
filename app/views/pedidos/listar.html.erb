@@ -1,8 +1,22 @@
+  <% content_for :scripts do %>
+   <script src="/libs/pedidos.js"></script>
+   <script src="/vendor/select2/select2.full.min.js"></script>
+  <% end %>
+ 
+
 
   <div class="container">
     <h2>PEDIDOS</h2>
+
+    <div class="form-group">
+    <label class="col-form-label">BUSCAR</label>
+    <div>
+        <input id="buscar_text_pedido" class="form-control" type="text" name="numero_mesa" placeholder="Buscar...">
+      </div>
+    </div>
+
     <p>pedidos del sistema</p>
-    <table class="table">
+    <table id="tabla_pedidos_listar" class="table">
       <thead>
         <tr>
           <th>ID</th>
@@ -11,70 +25,12 @@
           <th>CANTIDAD</th>
           <th>ESTADO</th>
           <th>TIEMPO_ESPERA</th>
+          <th>COSTO</th>
           <th>OPCIONES</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>2</td>
-          <td>ARROZ CON POLLO</td>
-          <td>2</td>
-          <td>EN ESPERA</td>
-          <td>1 minutos</td>
-          <td><button type="button" class="btn btn-primary">EDITAR</button>
-          <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>9</td>
-          <td>ARROZ CON MILANESA</td>
-          <td>1</td>
-          <td>PREPARANDO</td>
-          <td>18 minutos</td>
-          <td><button type="button" class="btn btn-primary">EDITAR</button>
-          <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>4</td>
-          <td>AEROPUERTO</td>
-          <td>2</td>
-          <td>EN ESPERA</td>
-          <td>2 minutos</td>
-          <td><button type="button" class="btn btn-primary">EDITAR</button>
-          <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>9</td>
-          <td>ALITAS CON OSTIONES</td>
-          <td>1</td>
-          <td>EN ESPERA</td>
-          <td>5 minutos</td>
-          <td><button type="button" class="btn btn-primary">EDITAR</button>
-          <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>8</td>
-          <td>ARROZ CHAUFA</td>
-          <td>1</td>
-          <td>LISTO</td>
-          <td>9 minutos</td>
-          <td><button id="BOTON_EDITAR" type="button" class="btn btn-primary">EDITAR</button>
-          <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>1</td>
-          <td>ENSALADA DE VERDURAS</td>
-          <td>4</td>
-          <td>PREPARANDO</td>
-          <td>4 minutos</td>
-          <td><button type="button" class="btn btn-primary">EDITAR</button>
-          <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-        </tr>
+       
       </tbody>
     </table>
     <div>
@@ -99,10 +55,7 @@
           <div class="form-group">
             <label>MESA: </label>
             <div>
-              <select class="select" data-live-search="true" id="IDmesa" name="IDmesa" style="width:10em">
-                  <option value="1">1</option>
-                  <option value="1">1</option>
-                  <option value="1">1</option>
+              <select class="js-example-basic-single" id="IDmesa" name="IDmesa" style="width:10em">
               </select>
             </div>
 
@@ -110,10 +63,7 @@
           <div class="form-group">
             <label class="col-form-label">PLATILLO:</label>
             <div>
-              <select class="select" data-live-search="true" id="IDplatillo" name="IDplatillo" style="width:10em">
-                <option value="ARROZ CHAUFA" selected>ARROZ CHAUFA</option>
-                <option value="MONSTRUO">MONSTRUO</option>
-                <option value="ARROZ CON VERDURAS">ARROZ CON VERDURAS</option>
+              <select class="js-example-basic-single"id="IDplatillo" name="IDplatillo" style="width:10em">
               </select>
 
             </div>

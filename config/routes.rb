@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   #pedidos
   post "/getAllpedidosActivosMesa", to: "pedidos#getAllActivos"
   post "/createPedido", to: "pedidos#create"
+  get "/buscarPedido", to: "pedidos#buscar", :as => "buscar_pedidos"
+  get "/getMesasOcupadas", to: "mesas#getOcupadas"
+  get "/getPlatillos", to: "pedidos#getPlatillos"
+
   root "main#login"
 end
