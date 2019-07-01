@@ -15,6 +15,14 @@ Rails.application.routes.draw do
   get "/buscarPedido", to: "pedidos#buscar", :as => "buscar_pedidos"
   get "/getMesasOcupadas", to: "mesas#getOcupadas"
   get "/getPlatillos", to: "pedidos#getPlatillos"
+  post "/eliminarPedido", to: "pedidos#eliminarPedido"
+  post "/actualizarPedido", to: "pedidos#actualizarPedido"
+  get "/getPedido", to: "pedidos#getPedido"
+  #mesas
+
+  post "/cambiarEstadoMesa", to: "mesas#cambiarEstadoMesa"
+  post "/reservarMesa", to: "mesas#reservarMesa"
+  get "/getReservacion", to: "mesas#getReservacion"
 
   root "main#login"
 end

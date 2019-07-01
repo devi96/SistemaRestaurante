@@ -72,7 +72,7 @@
        STATUS: <span class="<%= mesa.estado %>"> <%= mesa.estado %> </span> <br>
       <button id="MESA_ESTADO<%= mesa.id %>" type="button" class="btn_estados btn btn-primary">STATUS</button>
       <button id="MESA_PAGO<%= mesa.id %>" type="button" class="btn_pagos btn btn-primary">PAGOS</button>
-      <button class="btn_reservacion btn btn-success" id="btn-save_R<%= mesa.id %>">Reservacion</button>
+      <button class="btn_reservacion btn btn-success" id="MESA_RESERVACION<%= mesa.id %>">RESERVACION</button>
     </div>
     <% end %>
   </div>
@@ -99,8 +99,8 @@
          
 
         <div class="form-group">
-          <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
-          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+          <button id="btn_aceptar_status" class="btn btn-primary" id="btn-save_A">Aceptar</button>
+          <button id="btn_cancelar_status" class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>
@@ -125,21 +125,20 @@
         <div class="form-group">
           <label class="col-form-label">DNI</label>
           <div>
-            <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+            <input id="DNI_INPUT" class="form-control" name="name" type="text" value="">
           </div>
         </div>
         <div class="form-group">
           <label class="col-form-label">NOMBRE Y APELLIDOS</label>
           <div>
-            <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+            <input id="NOMBRE_INPUT" class="form-control" name="name" type="text" value="">
           </div>
         </div>
-
+        <div id="mensaje_de_error"></div>
 
         <div class="form-group">
-          <button class="btn btn-primary" id="btn-save_A">LIMPIAR MESA</button>
-          <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
-          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" id="btn_reservacion_aceptar">Aceptar</button>
+          <button class="btn btn-danger" id="btn_reservacion_cancelar" class="close" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_19_225517) do
+ActiveRecord::Schema.define(version: 2019_06_30_171539) do
 
   create_table "empleados", force: :cascade do |t|
     t.string "nombre"
@@ -46,11 +46,12 @@ ActiveRecord::Schema.define(version: 2019_06_19_225517) do
   create_table "pedidos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "mesa_id"
-    t.string "platillo_id"
+    t.integer "mesa_id"
+    t.integer "platillo_id"
     t.string "estado"
     t.integer "cantidad"
     t.string "tiempo_espera"
+    t.time "horaPedido"
   end
 
   create_table "platillos", force: :cascade do |t|
@@ -64,6 +65,13 @@ ActiveRecord::Schema.define(version: 2019_06_19_225517) do
   create_table "reservacions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "dni"
+    t.string "nombresApellidos"
+    t.string "regular"
+    t.integer "mesa_id"
+    t.string "tiempo_espera"
+    t.time "horaReservacion"
+    t.string "estado"
   end
 
 end

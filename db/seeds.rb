@@ -8,19 +8,24 @@
 
 
   Empleado.create([
-    {nombre: "Harold",apellido: "De la cruz",dni:"75699485",password:"1234"},
-    {nombre: "Alexis",apellido: "Vilchez",dni:"715615100",password:"4123"},
-    {nombre: "Dani",apellido: "Luzmila",dni:"12345",password:"5451"},
-    {nombre: "Beto",apellido: "Ulloa",dni:"123456",password:"1451"},
-    {nombre: "Maricarmen",apellido: "Marin",dni:"1234567",password:"5415"}])
+    {nombre: "Harold",apellido: "De la cruz",dni:"75699485",password:"1234", rol:"mesero"},
+    {nombre: "Alexis",apellido: "Vilchez",dni:"715615100",password:"4123", rol: "cajero"},
+    {nombre: "Dani",apellido: "Luzmila",dni:"12345",password:"5451", rol: "chef"},
+    {nombre: "Beto",apellido: "Ulloa",dni:"123456",password:"1451", rol: "admin"},
+    {nombre: "Maricarmen",apellido: "Marin",dni:"1234567",password:"5415", rol: "mesero"}])
 
-  Mesa.create([{capacidad:4,estado:"RESERVADO",client_id: 715615100},
-    {capacidad:4,estado:"LIBRE"},
+  Mesa.create([{capacidad:4,estado:"RESERVADO"},
+    {capacidad:4,estado:"RESERVADO"},
     {capacidad:4,estado:"LIBRE"},
     {capacidad:4,estado:"OCUPADO"},
     {capacidad:4,estado:"LIBRE"},
     {capacidad:4,estado:"OCUPADO"},
     {capacidad:4,estado:"LIBRE"}])
+
+  Reservacion.create([
+    {dni: "75699485", nombresApellidos: "Harold alexis de la cruz vilchez", regular: "SI", mesa_id: 1, horaReservacion: "12:00:00", tiempo_espera: "01 h, 00 min y 00 seg", estado: "ACTIVO"},
+    {dni: "75699481", nombresApellidos: "Harold2 alexis de la cruz vilchez", regular: "SI", mesa_id: 2, horaReservacion: "12:00:00", tiempo_espera: "00 h, 08 min y 00 seg", estado: "ACTIVO"}
+])
 
   Platillo.create([{nombre:"HUANCAINA",precio: 50.50,tipo_platillo:"MENU"},
     {nombre:"HUANCAINA1",precio: 60.50,tipo_platillo:"MENU"},
@@ -38,9 +43,9 @@
 
   # ESTADO: LISTO, PREPARADO, 
   Pedido.create([
-        {mesa_id: "1",platillo_id: "1",estado:"EN ESPERA",cantidad: 3,tiempo_espera: "00:01:00"},
-        {mesa_id: "1",platillo_id: "5",estado: "EN ESPERA",cantidad: 3,tiempo_espera: "00:19:00"},
-        {mesa_id: "2",platillo_id: "3",estado: "EN ESPERA",cantidad: 3,tiempo_espera: "00:30:00"},
-        {mesa_id: "3",platillo_id: "4",estado: "PREPARANDO",cantidad: 3,tiempo_espera: "00:20:00"},
-        {mesa_id: "4",platillo_id: "2",estado: "LISTO",cantidad: 3,tiempo_espera: "01:00:00"}
+        {mesa_id: 1,platillo_id: 1,estado:"EN ESPERA",cantidad: 3,horaPedido: "12:00:00",tiempo_espera: "01 h, 00 min y 00 seg"},
+        {mesa_id: 1,platillo_id: 5,estado: "EN ESPERA",cantidad: 3,horaPedido: "12:00:00",tiempo_espera: "00 h, 20 min y 00 seg"},
+        {mesa_id: 2,platillo_id: 3,estado: "EN ESPERA",cantidad: 3,horaPedido: "12:00:00",tiempo_espera: "00 h, 10 min y 40 seg"},
+        {mesa_id: 3,platillo_id: 4,estado: "PREPARANDO",cantidad: 3,horaPedido: "12:00:00",tiempo_espera: "00 h, 05 min y 00 seg"},
+        {mesa_id: 4,platillo_id: 2,estado: "LISTO",cantidad: 3,horaPedido: "12:00:00",tiempo_espera: "00 h, 08 min y 00 seg"}
     ])

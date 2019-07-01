@@ -2,7 +2,14 @@
    <script src="/libs/pedidos.js"></script>
    <script src="/vendor/select2/select2.full.min.js"></script>
   <% end %>
- 
+
+ <% content_for :styles do %>
+<link rel="stylesheet" href="/vendor/bootstrap-select/bootstrap-select.min.css">
+<link rel="stylesheet" href="/vendor/select2/select2.min.css">
+<link rel="stylesheet" href="/vendor/datatable/datatables.min.css">
+<link rel="stylesheet" href="/libs/pedidos.css">
+<% end %>
+
 
 
   <div class="container">
@@ -87,7 +94,7 @@
   </div>
 
 
-  <div class="modal fade" tabindex="-1" role="dialog" id="modal-editar" aria-labelledby="">
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal-editar-pedido" aria-labelledby="">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -101,10 +108,10 @@
           <div class="form-group">
             <label class="col-form-label">ESTADO DEL PLATILLLO:</label>
             <div>
-              <select class="select" data-live-search="true" id="tipo_agregar" name="tipo_agregar" style="width:10em">
-                <option value="ARROZ CHAUFA" selected>EN PREPARACION</option>
-                <option value="MONSTRUO">PREPARANDO</option>
-                <option value="ARROZ CON VERDURAS">ARROZ CON VERDURAS</option>
+              <select class="select" data-live-search="true" id="estado2" name="tipo_agregar" style="width:10em">
+                <option value="EN ESPERA" selected>EN ESPERA</option>
+                <option value="PREPARANDO">PREPARANDO</option>
+                <option value="LISTO">LISTO</option>
               </select>
 
             </div>
@@ -116,37 +123,56 @@
           <div class="form-group">
             <label>MESA: </label>
             <div>
-              <select class="select" data-live-search="true" id="placas_agregar" name="placas_agregar" style="width:10em">
-                  <option value="1">1</option>
-                  <option value="1">1</option>
-                  <option value="1">1</option>
+              <select class="js-example-basic-single" id="IDmesa2" name="IDmesa2" style="width:10em">
               </select>
             </div>
 
           </div>
+
+
           <div class="form-group">
             <label class="col-form-label">PLATILLO:</label>
             <div>
-              <select class="select" data-live-search="true" id="tipo_agregar" name="tipo_agregar" style="width:10em">
-                <option value="ARROZ CHAUFA" selected>ARROZ CHAUFA</option>
-                <option value="MONSTRUO">MONSTRUO</option>
-                <option value="ARROZ CON VERDURAS">ARROZ CON VERDURAS</option>
+              <select class="js-example-basic-single" id="IDplatillo2" name="IDplatillo2" style="width:10em">
               </select>
-
             </div>
-
           </div>
 
           <div class="form-group">
             <label class="col-form-label">CANTIDAD</label>
             <div>
-              <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+              <input id="cantidad_input2" class="form-control" name="name" type="text" value="">
             </div>
           </div>
 
           <div class="form-group">
-            <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
-            <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" id="btn_actualizar_pedido_aceptar">Aceptar</button>
+            <button class="btn btn-danger" id="btn_actualizar_pedido_cancelar" class="close" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-eliminar-pedido" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ELIMINAR</h5>
+          <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <h3>¿DESEA ELIMINAR ESTE PEDIDO?</h3>
+                <div class="group_msg ">
+                  <button class="btn btn-primary" id="btn_eliminar_pedido_aceptar">Aceptar</button>
+                  <button class="btn btn-danger" id="btn_eliminar_pedido_cancelar" class="close" data-dismiss="modal">Cancelar</button>  
+                </div>           
           </div>
         </div>
       </div>

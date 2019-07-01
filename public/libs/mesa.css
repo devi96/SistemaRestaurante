@@ -34,3 +34,9 @@ img{
 .modal-body{ 
     overflow-y: auto;
 }
+
+#mensaje_de_error {
+	background-color: red;
+	color:white;
+	margin-bottom: 1em;
+}
