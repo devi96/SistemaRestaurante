@@ -274,12 +274,7 @@ $(".tab_lista").on('click','li', function() {
   })
 
 
-  $("#agregar_platillo").click(function (evt) {
 
-    var _modal = $("#modal-agregar");
-    _modal.modal("show");
-
-  });
 
   $("#BOTON_EDITAR").click(function (evt) {
 
@@ -306,6 +301,6 @@ $(".tab_lista").on('click','li', function() {
     create_pedido();
     console.log("se creo");
   });
-  
+
 
 }

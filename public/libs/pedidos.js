@@ -1,7 +1,8 @@
 $(window).ready(function (evt) {
   var _pedido_id;
-  llenar_tabla_pedidos_listar();
+   modal_events_pedidos();
 });
+
 
 function llenar_tabla_pedidos_listar(textAbuscar){
       var _data = {
@@ -41,7 +42,7 @@ function llenar_tabla_pedidos_listar(textAbuscar){
     },
     complete: function(){
         console.log("Termino de llenar la tabla");
-        modal_events_pedidos();
+        getPlatillos();
     }
 
   });
@@ -71,7 +72,8 @@ function getLlenarDataPedido(pedido_id){
         $("#IDmesa2").val(_data.mesa_id);
         $("#IDplatillo2").val(_data.platillo_id);
         $("#cantidad_input2").val(_data.cantidad);
-
+        $("#IDmesa2").select2().trigger('change');
+        $("#IDplatillo2").select2().trigger('change');
       } else{
         console.log("No se encontro nada");
       }
@@ -122,7 +124,58 @@ function getMesasOcupadas(){
     },
     complete: function(){
         console.log("Termino de llenar la tabla");
-       
+        $('.js-example-basic-single').select2();
+
+
+      $(".btn_eliminar_pedido").click(function (evt) {
+         var idt = evt.target.id;
+        console.log("VALOR DEL PEDIDO: ");
+      
+        idt = idt.split("Eliminar")
+
+        console.log(idt[1]);
+        pedido_id = idt[1]
+
+        _pedido_id = pedido_id
+
+        var _modal = $("#modal-eliminar-pedido");
+        _modal.modal("show");
+
+      });
+
+
+      $("#btn_eliminar_pedido_aceptar").click(function (evt) {
+          eliminarPedido(_pedido_id);
+      });
+
+      $("#btn_actualizar_pedido_aceptar").click(function (evt) {
+          actualizarPedido(_pedido_id);
+      });
+
+     
+
+
+      $(".btn_editar_pedido").click(function (evt) {
+          console.log("PRESIONO AQUI")
+          var idt = evt.target.id;
+          console.log("VALOR DEL PEDIDO: ");
+      
+          idt = idt.split("Editar")
+
+        console.log(idt[1]);
+        pedido_id = idt[1]
+
+        _pedido_id = pedido_id
+
+          var _modal = $("#modal-editar-pedido");
+          _modal.modal("show");
+
+          getLlenarDataPedido(_pedido_id);
+      });
+
+
+
+
     }
 
   });
@@ -156,6 +209,7 @@ function actualizarPedido(pedido_id){
     },
     complete: function(){
         console.log("Termino de actualizo");
+        location.reload();
     }
   });
 
@@ -186,6 +240,7 @@ function eliminarPedido(pedido_id){
     },
     complete: function(){
         console.log("Termino de eliminar");
+        location.reload();
     }
   });
 }
@@ -230,7 +285,7 @@ function getPlatillos(){
       console.log("hubo un error");
     },
     complete: function(){
-
+        getMesasOcupadas();
     }
 
   });
@@ -238,98 +293,19 @@ function getPlatillos(){
 
 function modal_events_pedidos(){
 
+  llenar_tabla_pedidos_listar();
 
   $("#buscar_text_pedido").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     llenar_tabla_pedidos_listar(value);
   });
-
-
-    $(".btn_eliminar_pedido").click(function (evt) {
-         var idt = evt.target.id;
-        console.log("VALOR DEL PEDIDO: ");
-      
-        idt = idt.split("Eliminar")
-
-        console.log(idt[1]);
-        pedido_id = idt[1]
-
-        _pedido_id = pedido_id
-
-        var _modal = $("#modal-eliminar-pedido");
-        _modal.modal("show");
-
-      });
-
-
-
-
-      $("#btn_eliminar_pedido_aceptar").click(function (evt) {
-          eliminarPedido(_pedido_id);
-      });
-
-      $("#btn_actualizar_pedido_aceptar").click(function (evt) {
-          actualizarPedido(_pedido_id);
-      });
-
-     
-
-
-
-
-      $(".btn_editar_pedido").click(function (evt) {
-          console.log("PRESIONO AQUI")
-          var idt = evt.target.id;
-          console.log("VALOR DEL PEDIDO: ");
-      
-          idt = idt.split("Editar")
-
-        console.log(idt[1]);
-        pedido_id = idt[1]
-
-        _pedido_id = pedido_id
-
-          var _modal = $("#modal-editar-pedido");
+        $("#agregar_platillo").click(function (evt) {
+          var _modal = $("#modal-agregar");
           _modal.modal("show");
+        });
 
-          getLlenarDataPedido(_pedido_id);
-      });
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  setTimeout("getPlatillos();", 150);
-  setTimeout("getMesasOcupadas();", 150);
-
-  $('.js-example-basic-single').select2();
   
 
 

@@ -5,7 +5,35 @@ class MesasController < ApplicationController
 
   def reservacion
   end
+  
+  def buscarReservacion
+    puts "Se esta buscando el pedido"
+    dni = params[:dni]
+    @pedidos = Reservacion.getBuscarActivos(dni)
 
+    render json: @pedidos, status: :ok
+
+  end
+  
+  def eliminarReservacion
+    puts params
+    reservacion_id = params[:IDreservacion]
+
+    @reservacion = Reservacion.find(reservacion_id)
+
+    @mesa = Mesa.find(@reservacion.mesa_id)
+    
+    @mesa.estado = "LIBRE"
+    if @mesa.save
+      puts "No hubo problemas"
+    end
+
+    if @reservacion
+      @reservacion.destroy
+    end
+    render json: @reservacion, status: :ok
+  end
+  
   def getOcupadas
   	@mesas = Mesa.all
   	render json: @mesas, status: :ok
@@ -46,6 +74,15 @@ class MesasController < ApplicationController
 	  	@reservacion.nombresApellidos = params["nombre"]
 	  	@reservacion.mesa_id = @mesa.id
 	  	@reservacion.estado = "ACTIVO"
+      @reservacion.horaReservacion = Time.now
+      tiempo_espera = Time.at((Time.now - @reservacion.horaReservacion).to_i.abs).utc.strftime "%H h, %M min y %S seg"
+
+      if tiempo_espera.nil?
+          @reservacion.tiempo_espera = "00 h, 00 min y 00 seg"
+      else
+          @reservacion.tiempo_espera = tiempo_espera
+      end
+
 	  	@reservacion.save
 	  	render json: {msg: "Se actualizo"}, status: 200
 	  end

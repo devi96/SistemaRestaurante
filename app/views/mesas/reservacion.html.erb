@@ -1,3 +1,16 @@
+<% content_for :scripts do %>
+  <script src="/libs/reservacion.js"></script>
+  <script src="/vendor/select2/select2.full.min.js"></script>
+<% end %>
+
+<% content_for :styles do %>
+<link rel="stylesheet" href="/vendor/bootstrap-select/bootstrap-select.min.css">
+<link rel="stylesheet" href="/vendor/select2/select2.min.css">
+<link rel="stylesheet" href="/vendor/datatable/datatables.min.css">
+<link rel="stylesheet" href="/libs/reservacion.css">
+<% end %>
+
+
 <div class="container">
   <h2>RESERVACIONES</h2>
   <p>reservaciones del sistema</p>
@@ -5,11 +18,11 @@
   <div class="form-group">
     <label class="col-form-label">BUSCAR</label>
     <div>
-      <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+      <input id="buscar_text_reservacion" class="form-control" name="name" type="text" value="">
     </div>
   </div>
 
-  <table class="table">
+  <table id="tabla_reservaciones_listar" class="table">
     <thead>
       <tr>
         <th>ID</th>
@@ -21,62 +34,33 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>56457544</td>
-        <td>AIMARA LARA ROCIO</td>
-        <td>10 minutos</td>
-        <td><button type="button" class="btn btn-primary">EDITAR</button>
-        <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>45452</td>
-        <td>GENARO LARA ROCIO</td>
-        <td>10 minutos</td>
-        <td><button type="button" class="btn btn-primary">EDITAR</button>
-        <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>56451234</td>
-        <td>JHON SALCHICHA ROCIO</td>
-        <td>8 minutos</td>
-        <td><button type="button" class="btn btn-primary">EDITAR</button>
-        <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>56457544</td>
-        <td>CONSTANTINO LARA ROCIO</td>
-        <td>10 minutos</td>
-        <td><button type="button" class="btn btn-primary">EDITAR</button>
-        <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>56457544</td>
-        <td>GOKA LARA ROCIO</td>
-        <td>10 minutos</td>
-        <td><button type="button" class="btn btn-primary">EDITAR</button>
-        <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>23457544</td>
-        <td>AIMARA LARA ROCIO</td>
-        <td>10 minutos</td>
-        <td><button type="button" class="btn btn-primary">EDITAR</button>
-        <button type="button" class="btn btn-primary">ELIMINAR</button></td>
-      </tr>
+    
     </tbody>
   </table>
 
 
 </div>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal-eliminar-reservacion" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">ELIMINAR</h5>
+          <button id="close_modal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <h3>¿DESEA ELIMINAR ESTA RESERVACION?</h3>
+                <div class="group_msg ">
+                  <button class="btn btn-primary" id="btn_eliminar_reservacion_aceptar">Aceptar</button>
+                  <button class="btn btn-danger" id="btn_eliminar_reservacion_cancelar" class="close" data-dismiss="modal">Cancelar</button>  
+                </div>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

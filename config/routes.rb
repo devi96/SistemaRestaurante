@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post "/cambiarEstadoMesa", to: "mesas#cambiarEstadoMesa"
   post "/reservarMesa", to: "mesas#reservarMesa"
   get "/getReservacion", to: "mesas#getReservacion"
-
+  get "/buscarReservacion", to: "mesas#buscarReservacion"
+  post "/eliminarReservacion", to: "mesas#eliminarReservacion"
   root "main#login"
 end
