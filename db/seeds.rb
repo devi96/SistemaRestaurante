@@ -33,13 +33,13 @@
     {nombre:"HUANCAINA3",precio: 80.50,tipo_platillo:"MENU"},
     {nombre:"LIMONADA",precio: 90.50,tipo_platillo:"BEBIDA"}])
   
-  Pago.create([
-    {ruc:"2011200210",codigo:"0000000001",fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
-    {ruc:"2011200210",codigo:"0000000001",fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
-    {ruc:"2011200210",codigo:"0000000001",fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
-    {ruc:"2011200210",codigo:"0000000001",fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
-    {ruc:"2011200210",codigo:"0000000001",fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
-    {ruc:"2011200210",codigo:"0000000001",fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"}])
+  #Pago.create([
+  #  {mesa_id: 1,ruc:"2011200210",codigo:1,fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
+  #  {mesa_id: 1,ruc:"2011200210",codigo:2,fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"NO PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
+  #  {mesa_id: 1,ruc:"2011200210",codigo:3,fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"NO PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
+  #  {mesa_id: 2,ruc:"2011200210",codigo:4,fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"NO PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
+  #  {mesa_id: 2,ruc:"2011200210",codigo:5,fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"NO PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"},
+  #  {mesa_id: 3,ruc:"2011200210",codigo:6,fecha:"2016-08-20",monto: 40.50, moneda:"SOLES",estado:"NO PAGADO",forma_pago:"TARJETA",comprobante_pago:"FACTURA"}])
 
   # ESTADO: LISTO, PREPARADO, 
   Pedido.create([

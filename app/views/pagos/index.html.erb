@@ -1,12 +1,24 @@
+<% content_for :styles do %>
+<link rel="stylesheet" href="/vendor/bootstrap-select/bootstrap-select.min.css">
+<link rel="stylesheet" href="/vendor/select2/select2.min.css">
+<link rel="stylesheet" href="/vendor/datatable/datatables.min.css">
+<link rel="stylesheet" href="/libs/pagos.css">
+<% end %>
+
+<% content_for :scripts do %>
+ <script src="/libs/pagos.js"></script>
+<% end %>
+
+
 <div class="container">
   <h2>REGISTROS DE VENTA</h2>
   <p>VENTAS del sistema</p>
-  <table class="table">
+  <table id="tabla_pago_listar" class="table">
     <thead>
       <tr>
         <th>ID</th>
         <th>MESA</th>
-        <th>codigo_venta</th>
+        <th>codigo_orden</th>
         <th>ruc</th>
         <th>Monto</th>
         <th>Moneda</th>
@@ -17,78 +29,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>#23124314</td>
-        <td>20102445</td>
-        <td>133</td>
-        <td>SOLES</td>
-        <td>NO COBRADO</td>
-        <td>TARJETA</td>
-        <td>FACTURA</td>
-        <td><button id="REGISTRO_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>#23124314</td>
-        <td>20102445</td>
-        <td>133</td>
-        <td>SOLES</td>
-        <td>NO COBRADO</td>
-        <td>TARJETA</td>
-        <td>FACTURA</td>
-        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>#23124314</td>
-        <td>20102445</td>
-        <td>133</td>
-        <td>SOLES</td>
-        <td>NO COBRADO</td>
-        <td>TARJETA</td>
-        <td>FACTURA</td>
-        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>#23124314</td>
-        <td>20102445</td>
-        <td>133</td>
-        <td>SOLES</td>
-        <td>NO COBRADO</td>
-        <td>TARJETA</td>
-        <td>FACTURA</td>
-        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>#23124314</td>
-        <td>20102445</td>
-        <td>133</td>
-        <td>SOLES</td>
-        <td>NO COBRADO</td>
-        <td>TARJETA</td>
-        <td>FACTURA</td>
-        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>#23124314</td>
-        <td>20102445</td>
-        <td>133</td>
-        <td>SOLES</td>
-        <td>NO COBRADO</td>
-        <td>TARJETA</td>
-        <td>FACTURA</td>
-        <td><button id="MESA_PAGO" type="button" class="btn btn-primary">REGISTRAR PAGO</button></td>
-      </tr>
+      
     </tbody>
   </table>
 </div>

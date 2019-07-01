@@ -291,16 +291,62 @@ $(".tab_lista").on('click','li', function() {
 
   });
   $("#REGISTRO_PAGO").click(function( evt) {
+    var idt = evt.target.id;
+    console.log("VALOR DE LA MESA: ");
+    $("#mensaje_de_error").html("");
+    idt = idt.split("MESA_RESERVACION");
+
+    console.log(idt[1]);
+    mesa_id = idt[1];
+
+    _mesa_id = mesa_id;
+    
     var _modal = $("#modal-pagar_pagos");
     _modal.modal("show");
   });
 
+  $("#btn_generar_recibo_aceptar").click(function (evt){
+    console.log("crear orden");
+    console.log("crear pago");
+    crearOrdenPago(_mesa_id);
+  });
 
   $("#btn_save_AGREGAR").click(function (evt){
     console.log("crear pedido");
-    create_pedido();
+    create_pedido(_mesa_id);
     console.log("se creo");
   });
 
 
+}
+
+
+function crearOrdenPago(mesa_id){
+   var _data = {
+        IDmesa: mesa_id
+      }
+  $.ajax({
+    url: HOST_NAME +'/createOrdenPago',
+    type: 'post',
+    datatype: 'json',
+    data: JSON.stringify(_data),
+    contentType: "application/json",
+    success: function(response, status, xhr){
+      var costo_total = 0;
+      if (status == "success"){
+        console.log("Se creo exitosamente los pagos y ordenes");
+        console.log(response);
+      } else{
+        console.log("No se creo");
+      }
+
+    },
+    error: function (responseData, textStatus, errorThrown) {
+      console.log("hubo un error");
+    },
+    complete: function(){
+        console.log("Termino de crear ordenes y pedidos");
+    }
+
+  });
 }
