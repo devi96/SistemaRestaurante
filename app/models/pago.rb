@@ -21,4 +21,5 @@ class Pago < ApplicationRecord
 		
 		return array_pagos
 	end
+	
 end

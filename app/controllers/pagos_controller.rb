@@ -10,6 +10,7 @@ class PagosController < ApplicationController
   	monto=0
   	puts @pedidos
   	codigoOrdenMax = (Orden.maximum("codigoOrden").to_i + 1)
+
   	@pedidos.each do |ped|
   		@pedi = Pedido.find(ped[:id])
   		@pedi.estado = "PAGADO"
@@ -32,6 +33,8 @@ class PagosController < ApplicationController
 	  @ordenes.each do |o|
 	    raise ActiveRecord::Rollback unless o.save
 	  end
+
+        render json: {message: "TODO CORRECTO"}, status: :ok
 	end
 
   end
@@ -45,5 +48,25 @@ class PagosController < ApplicationController
 
   end
 
+  def registroPago
+    puts "Se esta registrando el pago"
+      estado = params[:estado]
+      forma_pago = params[:forma_pago]
+      comprobante_pago = params[:comprobante_pago]
+      ruc = params[:ruc]
+      pago_id = params[:pago_id]
 
+
+      @pago = Pago.find(pago_id)
+
+      if @pago
+        @pago.estado = estado
+        @pago.forma_pago = forma_pago
+        @pago.comprobante_pago = comprobante_pago
+        @pago.ruc = ruc
+        @pago.save
+      end
+
+      render json: @pago, status: :ok
+  end
 end

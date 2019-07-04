@@ -291,6 +291,46 @@ function getPlatillos(){
   });
 }
 
+
+function create_pedido(){
+  var _data = {
+    IDmesa: $("#IDmesa option:selected").val(),
+    IDplatillo: $("#IDplatillo option:selected").val(),
+    cantidad: $("#cantidad_input").val()
+  }
+  $.ajax({
+    url: HOST_NAME +'/createPedido',
+    type: 'post',
+    datatype: 'json',
+    data: JSON.stringify(_data),
+    contentType: "application/json",
+    success: function(response, status, xhr){
+      if (status == "success"){
+        console.log("paso");
+        //fill_table();
+        $("#close_modal").click();
+        console.log("Si se guardo")
+      } else{
+        console.log("No se guardo")
+      }
+
+    },
+    error: function (responseData, textStatus, errorThrown) {
+      console.log("hubo un error");
+    },
+    complete: function(){
+      location.reload();
+    }
+
+  });
+
+}
+
+
+
+
+
+
 function modal_events_pedidos(){
 
   llenar_tabla_pedidos_listar();
@@ -299,14 +339,17 @@ function modal_events_pedidos(){
     var value = $(this).val().toLowerCase();
     llenar_tabla_pedidos_listar(value);
   });
-        $("#agregar_platillo").click(function (evt) {
-          var _modal = $("#modal-agregar");
-          _modal.modal("show");
-        });
 
-  
-
-  
+$("#agregar_platillo").click(function (evt) {
+    var _modal = $("#modal-agregar");
+     _modal.modal("show");
+    });
 
 
+ $("#btn_save_AGREGAR").click(function (evt){
+    console.log("crear pedido");
+    create_pedido();
+    console.log("se creo");
+  });
+ 
 }

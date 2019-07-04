@@ -30,5 +30,6 @@ Rails.application.routes.draw do
   # pagos
   post "/createOrdenPago", to: "pagos#createOrdenPago"
   get "/buscarPagos", to: "pagos#buscarPagos"
+  post "/registroPago", to: "pagos#registroPago"
   root "main#login"
 end

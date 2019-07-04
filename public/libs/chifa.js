@@ -5,39 +5,7 @@ $(window).ready(function (evt) {
 	//fill_vehicles();
 });
 
-function create_pedido(){
-  var _data = {
-    IDmesa: $("#IDmesa option:selected").val(),
-    IDplatillo: $("#IDplatillo option:selected").val(),
-    cantidad: $("#cantidad_input").val()
-  }
-  $.ajax({
-    url: HOST_NAME +'/createPedido',
-    type: 'post',
-    datatype: 'json',
-    data: JSON.stringify(_data),
-    contentType: "application/json",
-    success: function(response, status, xhr){
-      if (status == "success"){
-        console.log("paso");
-        //fill_table();
-        $("#close_modal").click();
-        console.log("Si se guardo")
-      } else{
-        console.log("No se guardo")
-      }
 
-    },
-    error: function (responseData, textStatus, errorThrown) {
-      console.log("hubo un error");
-    },
-    complete: function(){
-
-    }
-
-  });
-
-}
 function llenar_tabla_pedidos(mesa_id){
       var _data = {
         IDmesa: mesa_id
@@ -311,11 +279,6 @@ $(".tab_lista").on('click','li', function() {
     crearOrdenPago(_mesa_id);
   });
 
-  $("#btn_save_AGREGAR").click(function (evt){
-    console.log("crear pedido");
-    create_pedido(_mesa_id);
-    console.log("se creo");
-  });
 
 
 }
@@ -346,6 +309,7 @@ function crearOrdenPago(mesa_id){
     },
     complete: function(){
         console.log("Termino de crear ordenes y pedidos");
+         location.reload();
     }
 
   });

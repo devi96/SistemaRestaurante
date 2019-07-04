@@ -63,7 +63,52 @@ function modals_buttons_pago(){
         _modal.modal("show");
 
       });
-}
+
+      $("#btn_pago_aceptar").click(function (evt){
+        console.log("valor de pago id");
+        console.log(_pagos_id);
+        registroPago(_pagos_id);
+      });
+};
+
+function registroPago(pagos_id){
+
+  var _data = {
+      pago_id: pagos_id,
+      estado: $("#estado_pago").val(),
+      forma_pago: $("#forma_pago").val(),
+      comprobante_pago: $("#comprobante_pago").val(),
+      ruc: $("#ingresar_ruc").val()
+  }
+
+  $.ajax({
+    url: HOST_NAME +'/registroPago',
+    type: 'post',
+    datatype: 'json',
+    data: JSON.stringify(_data),
+    contentType: "application/json",
+    success: function(response, status, xhr){
+    
+      if (status == "success"){
+        console.log("Se registro con exito el pago");
+        //fill_table();
+        console.log(response);
+      } else{
+        console.log("No se guardo");
+      }
+
+    },
+    error: function (responseData, textStatus, errorThrown) {
+      console.log("hubo un error");
+    },
+    complete: function(){
+        console.log("Se termino");
+        location.reload();
+
+    }
+  });
+
+};
 
 function modal_events_pagos(){
   llenar_tabla_pagos_listar();

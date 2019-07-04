@@ -52,10 +52,9 @@
         <div class="form-group">
           <label class="col-form-label">ESTADO:</label>
           <div>
-            <select class="select" data-live-search="true" id="tipo_agregar" name="tipo_agregar" style="width:10em">
-              <option value="ARROZ CHAUFA" selected>NO COBRADO</option>
-              <option value="MONSTRUO">PREPARANDO</option>
-              <option value="ARROZ CON VERDURAS">ARROZ CON VERDURAS</option>
+            <select class="select form-control" data-live-search="true" id="estado_pago" name="estado_pago" style="width:10em">
+              <option value="NO PAGADO" selected>NO PAGADO</option>
+              <option value="PAGADO">PAGADO</option>
             </select>
 
           </div>
@@ -64,41 +63,41 @@
 
 
 
-        <div class="form-group">
+        <div class="form-group ">
           <label>forma_pago: </label>
           <div>
-            <select class="select" data-live-search="true" id="placas_agregar" name="placas_agregar" style="width:10em">
+            <select class="select form-control" data-live-search="true" id="forma_pago" name="forma_pago" style="width:10em">
                 <option value="1" selected>TARJETA</option>
-                <option value="1">1</option>
-                <option value="1">1</option>
+                <option value="1">EFECTIVO</option>
             </select>
           </div>
 
         </div>
 
 
-                <div class="form-group">
-                  <label>MONEDA </label>
-                  <div>
-                    <select class="select" data-live-search="true" id="placas_agregar" name="placas_agregar" style="width:10em">
-                        <option value="1" selected>SOLES</option>
-                        <option value="1">1</option>
-                        <option value="1">1</option>
-                    </select>
-                  </div>
 
-                </div>
+        <div class="form-group ">
+          <label>Comprobante de pago: </label>
+          <div>
+            <select class="select form-control"  data-live-search="true" id="comprobante_pago" name="comprobante_pago" style="width:10em">
+                <option value="1" selected>BOLETA</option>
+                <option value="1">FACTURA</option>
+            </select>
+          </div>
+
+        </div>
+
 
         <div class="form-group">
-          <label class="col-form-label">MONTO</label>
+          <label class="col-form-label">RUC</label>
           <div>
-            <input id="fecha_inicio_input" class="form-control" name="name" type="text" value="">
+            <input id="ingresar_ruc" class="form-control" name="ingresar_ruc" type="text" value="">
           </div>
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary" id="btn-save_A">Aceptar</button>
-          <button class="btn btn-danger" id="btn-cancel_A" class="close" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" id="btn_pago_aceptar">Aceptar</button>
+          <button class="btn btn-danger" id="btn_pago_cancelar" class="close" data-dismiss="modal">Cancelar</button>
         </div>
       </div>
     </div>
