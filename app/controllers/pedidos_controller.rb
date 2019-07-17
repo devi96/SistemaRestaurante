@@ -32,16 +32,22 @@ class PedidosController < ApplicationController
     platillo_id = params[:IDplatillo]
     cantidad = params[:cantidad]
 
-    @pedido = Pedido.find(pedido_id)
-    if @pedido
-      @pedido.estado = estado
-      @pedido.mesa_id = mesa_id
-      @pedido.platillo_id = platillo_id
-      @pedido.estado = estado
-      @pedido.cantidad = cantidad
-      @pedido.save
+    if ( !(pedido_id.blank?) && !(estado.blank?) && !(mesa_id.blank?) && !(platillo_id.blank?) && !(cantidad.blank?) )
+
+      @pedido = Pedido.find(pedido_id)
+      if @pedido
+        @pedido.estado = estado
+        @pedido.mesa_id = mesa_id
+        @pedido.platillo_id = platillo_id
+        @pedido.estado = estado
+        @pedido.cantidad = cantidad
+        @pedido.save
+      end
+      render json: @pedido, status: :ok
+    else
+      render json: {msj: "Campos vacios"}, status: 402
     end
-    render json: @pedido, status: :ok
+    
   end
   
   def eliminarPedido

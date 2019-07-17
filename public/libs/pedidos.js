@@ -180,7 +180,12 @@ function getMesasOcupadas(){
 
   });
 }
+
+
 function actualizarPedido(pedido_id){
+  //var cant = parseInt($("#cantidad_input2").val(),10);
+   //if (cant > 0 && cant < 10)
+
    var _data = {
         IDpedido: pedido_id,
         estado: $("#estado2 option:selected").val(),
@@ -202,14 +207,18 @@ function actualizarPedido(pedido_id){
       } else{
         console.log("No se pudo actualizo");
       }
-
+      $("#modal-editar-pedido").modal("hide");
+      toastr.success('Se actualizo el pedido', 'Success');
     },
     error: function (responseData, textStatus, errorThrown) {
       console.log("hubo un error");
+      toastr.error('Ocurrio un error tipo:' + responseData.responseJSON.msj, 'Error');
+
     },
     complete: function(){
         console.log("Termino de actualizo");
-        location.reload();
+        //location.reload();
+
     }
   });
 
@@ -240,7 +249,7 @@ function eliminarPedido(pedido_id){
     },
     complete: function(){
         console.log("Termino de eliminar");
-        location.reload();
+        //location.reload();
     }
   });
 }
@@ -308,16 +317,16 @@ function create_pedido(){
       if (status == "success"){
         console.log("paso");
         //fill_table();
-        $("#close_modal").click();
+        $("#modal-editar-pedido").modal("hide");
         console.log("Si se guardo")
       } else{
         console.log("No se guardo")
       }
-
+      toastr.success('Se agrego el pedido', 'Success');
     },
     error: function (responseData, textStatus, errorThrown) {
       console.log("hubo un error");
-      toastr.error('Ocurrio un error tipo:' + responseData, 'Error');
+      toastr.error('Ocurrio un error tipo:' + responseData.responseJSON.msj, 'Error');
     },
     complete: function(){
       
