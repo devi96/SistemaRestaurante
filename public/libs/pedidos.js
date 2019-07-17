@@ -317,9 +317,10 @@ function create_pedido(){
     },
     error: function (responseData, textStatus, errorThrown) {
       console.log("hubo un error");
+      toastr.error('Ocurrio un error tipo:' + responseData, 'Error');
     },
     complete: function(){
-      location.reload();
+      
     }
 
   });

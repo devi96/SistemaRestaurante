@@ -2,15 +2,15 @@ class LoginController < ApplicationController
 
   def login_up
     puts params
-    @empleado = Empleado.find_by(dni: params[:dni], password: params[:password])
+    @empleado = Empleado.find_by(dni: params[:dni])
 
-    if @empleado.blank?
+    if @empleado && @empleado.authenticate(params[:password])
+      session[:current_user_id] = @empleado.id
+      redirect_to "/mesa/ver"
+    else
       puts "No se encontro un usuario con estas claves"
       flash[:fail] = "Usuario o password incorrecto"
       redirect_to root_url
-    else
-      session[:current_user_id] = @empleado.id
-      redirect_to "/mesa/ver"
     end
   end
 

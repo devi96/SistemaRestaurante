@@ -10,32 +10,38 @@ class PagosController < ApplicationController
   	monto=0
   	puts @pedidos
   	codigoOrdenMax = (Orden.maximum("codigoOrden").to_i + 1)
+    if !@pedidos.blank?
 
-  	@pedidos.each do |ped|
-  		@pedi = Pedido.find(ped[:id])
-  		@pedi.estado = "PAGADO"
-  		@pedi.save
-  		puts ped
-  		puts ped.inspect
-  		monto = monto + ped[:costo]
-  		puts "VALOR DE MONTO"
-  		puts monto
-  	end
-  	@pago = Pago.new(codigo: codigoOrdenMax, monto: monto, fecha: Time.now , moneda:"SOLES", estado:"NO PAGADO", mesa_id: mesa_id)
-  	@pago.save
+    	@pedidos.each do |ped|
+    		@pedi = Pedido.find(ped[:id])
+    		@pedi.estado = "PAGADO"
+    		@pedi.save
+    		puts ped
+    		puts ped.inspect
+    		monto = monto + ped[:costo]
+    		puts "VALOR DE MONTO"
+    		puts monto
+    	end
 
-  	@ordenes = []
-  	@pedidos.each do |ped|
-  		@ordenes << Orden.new(pedido_id: ped[:id], codigoOrden: codigoOrdenMax ,pago_id: @pago.id)
-  	end
+    	@pago = Pago.new(codigo: codigoOrdenMax, monto: monto, fecha: Time.now , moneda:"SOLES", estado:"NO PAGADO", mesa_id: mesa_id)
+    	@pago.save
 
-  	Orden.transaction do
-	  @ordenes.each do |o|
-	    raise ActiveRecord::Rollback unless o.save
-	  end
+    	@ordenes = []
+    	@pedidos.each do |ped|
+    		@ordenes << Orden.new(pedido_id: ped[:id], codigoOrden: codigoOrdenMax ,pago_id: @pago.id)
+    	end
 
-        render json: {message: "TODO CORRECTO"}, status: :ok
-	end
+    	Orden.transaction do
+
+  	  @ordenes.each do |o|
+  	    raise ActiveRecord::Rollback unless o.save
+  	  end
+
+      render json: {message: "TODO CORRECTO"}, status: :ok
+      end
+  else
+    render json: {message: "SIN PEDIDOS"}, status: 402
+  end
 
   end
   

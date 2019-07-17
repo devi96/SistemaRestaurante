@@ -76,6 +76,8 @@ class PedidosController < ApplicationController
    	platillo_id = params[:IDplatillo]
    	cantidad = params[:cantidad]
 
+    if ( !(mesa_id.blank?) && !(platillo_id.blank?) && !(cantidad.blank?) )
+
     @Pedido = Pedido.new
     @Pedido.mesa_id = mesa_id
     @Pedido.platillo_id = platillo_id
@@ -97,7 +99,9 @@ class PedidosController < ApplicationController
     else
       render json: @Pedido.errors, status: :unprocessable_entity
     end
-
+  else
+      render json: {msj: "Campos vacios"}, status: 402
+  end
 
   end
 

@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2019_07_01_051104) do
   create_table "empleados", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido"
-    t.string "dni"
-    t.string "password"
+    t.string "dni", limit: 8
+    t.string "password_digest"
     t.string "rol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_051104) do
   create_table "reservacions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "dni"
+    t.string "dni", limit: 8
     t.string "nombresApellidos"
     t.string "regular"
     t.integer "mesa_id"

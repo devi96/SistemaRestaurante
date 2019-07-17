@@ -62,30 +62,41 @@ class MesasController < ApplicationController
   def reservarMesa
   puts "parametros de la mesa #{params}"
   @mesa = Mesa.find(params["IDmesa"])
-	  if !(@mesa.estado.eql? "LIBRE")
-	  	puts "MESA NO LIBRE"
-	  	message_fail = "La mesa no estaba libre"
-	  	render json: {msg: message_fail}, status: 400
-	  else
-	  	@mesa.estado = "RESERVADO"
-	  	@mesa.save
-	  	@reservacion = Reservacion.new
-	  	@reservacion.dni = params["dni"]
-	  	@reservacion.nombresApellidos = params["nombre"]
-	  	@reservacion.mesa_id = @mesa.id
-	  	@reservacion.estado = "ACTIVO"
-      @reservacion.horaReservacion = Time.now
-      tiempo_espera = Time.at((Time.now - @reservacion.horaReservacion).to_i.abs).utc.strftime "%H h, %M min y %S seg"
+  if ((!params["nombre"].blank?) && (!params["dni"].blank?))
+    if params["dni"] =~ /^[0-9]{8}$/
+      
+  	  if !(@mesa.estado.eql? "LIBRE")
+  	  	puts "MESA NO LIBRE"
+  	  	message_fail = "La mesa no estaba libre"
+  	  	render json: {msg: message_fail}, status: 402
+  	  else
+  	  	@mesa.estado = "RESERVADO"
+  	  	@mesa.save
+  	  	@reservacion = Reservacion.new
+  	  	@reservacion.dni = params["dni"]
+  	  	@reservacion.nombresApellidos = params["nombre"]
+  	  	@reservacion.mesa_id = @mesa.id
+  	  	@reservacion.estado = "ACTIVO"
+        @reservacion.horaReservacion = Time.now
+        tiempo_espera = Time.at((Time.now - @reservacion.horaReservacion).to_i.abs).utc.strftime "%H h, %M min y %S seg"
 
-      if tiempo_espera.nil?
-          @reservacion.tiempo_espera = "00 h, 00 min y 00 seg"
-      else
-          @reservacion.tiempo_espera = tiempo_espera
-      end
+        if tiempo_espera.nil?
+            @reservacion.tiempo_espera = "00 h, 00 min y 00 seg"
+        else
+            @reservacion.tiempo_espera = tiempo_espera
+        end
 
-	  	@reservacion.save
-	  	render json: {msg: "Se actualizo"}, status: 200
-	  end
+  	  	@reservacion.save
+  	  	render json: {msg: "Se actualizo"}, status: 200
+  	  end
+    else
+      render :json => { :msg => "dni invalido" }, status: 402
+    end
+  else
+      render :json => { :msg => "Campos nulos" }, status: 402
+  end
+
+
   end
 
   def getReservacion

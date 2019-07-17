@@ -28,7 +28,7 @@ function llenar_tabla_pedidos(mesa_id){
 
           $.each(response, function(i, item){
             $tr += '<tr><td>' + item.id + '</td><td>' + item.platillo_id + '</td><td>' + item.cantidad  + '</td><td>' + item.estado + '</td><td>' + item.tiempo_espera + '</td><td>' + item.costo + '</td> </tr>';
-            costo_total = costo_total + parseFloat(item.costo);
+            costo_total = costo_total + (parseFloat(item.costo) * parseFloat(item.cantidad) );
           });
           $("#CostoTotal").html(costo_total);
           $(".tabla_pedidos > tbody").html($tr);
@@ -67,20 +67,24 @@ function cambiarEstadoMesa(mesa_id){
       if (status == "success"){
         console.log("Se actualizo exitosamente la mesa");
         console.log(response);
+        toastr.success('Se cambio el estado de la mesa con exito', 'Succes')
+        $("#modal-estado").modal("hide");
       } else{
         console.log("No se guardo");
       }
-      location.reload();
+      
     },
     error: function (responseData, textStatus, errorThrown) {
       console.log("hubo un error");
+      toastr.error('Ocurrio un error y no se pudo cambiar el estado', 'Error')
     },
     complete: function(){
-        console.log("Termino de actualizar");
+      console.log("Termino de actualizar");
     }
   });
 }
 function reservarMesa(mesa_id){
+
     var _data = {
         IDmesa: mesa_id,
         nombre: $("#NOMBRE_INPUT").val(),
@@ -109,11 +113,14 @@ function reservarMesa(mesa_id){
       console.log("hubo un error");
       console.log(responseData.responseJSON.msg);
       $("#mensaje_de_error").html(responseData.responseJSON.msg);
+      toastr.error('Ha ocurrido un error y no se pudo seguir con la reservacion', 'Error')
     },
     complete: function(){
         console.log("Termino de reservar");
     }
   });
+
+
 }
 
 function llenar_inputs_reservacion(mesa_id){
@@ -299,6 +306,8 @@ function crearOrdenPago(mesa_id){
       if (status == "success"){
         console.log("Se creo exitosamente los pagos y ordenes");
         console.log(response);
+        toastr.success('Se registro con exito la orden de pago', 'Succes')
+        $('#modal-pagar').modal('hide');
       } else{
         console.log("No se creo");
       }
@@ -306,10 +315,13 @@ function crearOrdenPago(mesa_id){
     },
     error: function (responseData, textStatus, errorThrown) {
       console.log("hubo un error");
+
+      toastr.error('No hay pedidos para generar recibo', 'Error')
+
     },
     complete: function(){
         console.log("Termino de crear ordenes y pedidos");
-         location.reload();
+        //location.reload();
     }
 
   });
