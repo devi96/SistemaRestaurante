@@ -96,14 +96,19 @@ function registroPago(pagos_id){
       } else{
         console.log("No se guardo");
       }
+      var _modal = $("#modal-pagar_pagos");
+        _modal.modal("hide");
 
     },
     error: function (responseData, textStatus, errorThrown) {
       console.log("hubo un error");
+      toastr.error('Ocurrio un error tipo:' + responseData.responseJSON.msj, 'Error');
+
     },
     complete: function(){
         console.log("Se termino");
-        location.reload();
+        //location.reload();
+        llenar_tabla_pagos_listar();
 
     }
   });

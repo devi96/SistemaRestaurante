@@ -33,7 +33,7 @@ class PedidosController < ApplicationController
     cantidad = params[:cantidad]
 
     if ( !(pedido_id.blank?) && !(estado.blank?) && !(mesa_id.blank?) && !(platillo_id.blank?) && !(cantidad.blank?) )
-
+    if (cantidad.is_a? Integer )
       @pedido = Pedido.find(pedido_id)
       if @pedido
         @pedido.estado = estado
@@ -45,9 +45,12 @@ class PedidosController < ApplicationController
       end
       render json: @pedido, status: :ok
     else
+      render json: {msj: "Cantidad invalida"}, status: 402
+    end
+    else
       render json: {msj: "Campos vacios"}, status: 402
     end
-    
+
   end
   
   def eliminarPedido
@@ -83,7 +86,7 @@ class PedidosController < ApplicationController
    	cantidad = params[:cantidad]
 
     if ( !(mesa_id.blank?) && !(platillo_id.blank?) && !(cantidad.blank?) )
-
+    if (cantidad.is_a? Integer )
     @Pedido = Pedido.new
     @Pedido.mesa_id = mesa_id
     @Pedido.platillo_id = platillo_id
@@ -105,6 +108,10 @@ class PedidosController < ApplicationController
     else
       render json: @Pedido.errors, status: :unprocessable_entity
     end
+  else
+    render json: {msj: "Cantidad invalida"}, status: 402
+  end
+
   else
       render json: {msj: "Campos vacios"}, status: 402
   end

@@ -65,14 +65,32 @@ class PagosController < ApplicationController
 
       @pago = Pago.find(pago_id)
 
-      if @pago
-        @pago.estado = estado
-        @pago.forma_pago = forma_pago
-        @pago.comprobante_pago = comprobante_pago
-        @pago.ruc = ruc
-        @pago.save
+      if comprobante_pago.eql? "FACTURA"
+        if ruc.blank?
+          render json: {msj: "El ruc es obligatorio para las facturas"}, status: 402
+        else
+          if ((ruc.is_a? Integer) && (ruc.length == 11))
+          if @pago
+            @pago.estado = estado
+            @pago.forma_pago = forma_pago
+            @pago.comprobante_pago = comprobante_pago
+            @pago.ruc = ruc
+            @pago.save
+          end
+          render json: @pago, status: :ok
+          else
+            render json: {msj: "El ruc no es valido"}, status: 402
+          end
+        end
+      else
+          if @pago
+            @pago.estado = estado
+            @pago.forma_pago = forma_pago
+            @pago.comprobante_pago = comprobante_pago
+            @pago.ruc = "-------"
+            @pago.save
+          end
+          render json: @pago, status: :ok
       end
-
-      render json: @pago, status: :ok
   end
 end
